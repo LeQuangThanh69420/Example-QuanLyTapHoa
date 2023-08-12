@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,28 @@ import { Router } from '@angular/router';
   templateUrl: './login-frame.component.html',
   styleUrls: ['./login-frame.component.css']
 })
-export class LoginFrameComponent {
-  constructor(private router: Router) {}
-  displaySignUp() {
-    this.router.navigate(['/SignUp']);
+export class LoginFrameComponent implements OnInit{
+
+  constructor() {
+
   }
+
+  account: any = {};
+  curraccount: any = {};
+
+  ngOnInit() {
+
+  }
+
+  longin() {
+    console.log(this.account.taikhoan)
+    this.curraccount.taikhoan = this.account.taikhoan;
+  }
+
+  logout() {
+    this.curraccount.taikhoan = null;
+  }
+
 }
+
+

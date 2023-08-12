@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { LoginFrameComponent } from './login-frame/login-frame.component';
 import { SignupFrameComponent } from './signup-frame/signup-frame.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFrameComponent,
     SignupFrameComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
