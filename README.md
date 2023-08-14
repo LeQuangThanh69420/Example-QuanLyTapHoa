@@ -33,6 +33,8 @@
   ng serve //hosting angular app
   ng g m //generate module and declare to the module you are standing
   ng g c //generate component and declare to the module you are standing
+  ng g m --skip-tests
+  ng g c --skip-tests
   ```
 * Framework used:
   - @angular/cli
