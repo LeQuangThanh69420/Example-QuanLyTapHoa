@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() {};
+  input: string;
+
+  constructor() {
+  }
   ngOnInit() {
     
   }
   Chim() :void {
-    alert("chim");
+    alert(this.input);
   }
 }
