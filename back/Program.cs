@@ -6,14 +6,15 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Configuration.AddJsonFile("appsettings.json");
-var configuration = builder.Configuration;
-
 builder.Services.AddControllers();
+
+builder.Configuration.AddJsonFile("appsettings.json");//add mssql connection string
+var configuration = builder.Configuration;
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 });
+
 builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -30,6 +31,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//add cors
 app.UseCors("CorsPolicy");
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200"));
 app.UseAuthentication();

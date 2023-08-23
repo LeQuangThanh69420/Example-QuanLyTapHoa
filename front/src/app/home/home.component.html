@@ -1,1 +1,7 @@
 <p>Chao Mung</p>
+<input type="text" name="" id="inputText" [(ngModel)]="input">
+<button (click)="Chim()">Chim</button>
+
+<ul>
+    <li *ngFor="let weather of weathers ">{{weather.date}} , {{weather.temperatureC}} , {{weather.temperatureF}}</li>
+</ul>
