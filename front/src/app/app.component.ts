@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiService } from './api.service';
 import { OnInit } from '@angular/core';
 
 @Component({
@@ -11,8 +10,9 @@ export class AppComponent implements OnInit {
 
   title = 'front';
 
-  categoryData: any;
-  constructor(private apiService: ApiService) {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

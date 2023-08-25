@@ -19,7 +19,7 @@ namespace back.Controllers
         }
         [HttpGet("getCategory")]
         public ActionResult<List<Category>> getCategory(){ //generic
-            var category = _context.Category.AsQueryable().Where(c=>c.IsActive == true); // c duoc lay tu thg Category o doan _context.Category
+            var category = _context.Category.AsQueryable().Where(c => c.IsActive == true); // c duoc lay tu thg Category o doan _context.Category
             return category.ToList();
         }
         [HttpGet("getSanPham")]
