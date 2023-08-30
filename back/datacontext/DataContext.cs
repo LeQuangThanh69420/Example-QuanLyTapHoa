@@ -13,6 +13,6 @@ namespace back.datacontext
         {}
 
         public DbSet<Category> Category { get; set; } // DbSet<Ten_Entity> Ten_bang {get; set;}
-        public DbSet<SanPham> SanPham { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

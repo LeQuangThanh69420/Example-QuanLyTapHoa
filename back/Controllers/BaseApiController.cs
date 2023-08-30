@@ -22,10 +22,10 @@ namespace back.Controllers
             var category = _context.Category.AsQueryable().Where(c => c.IsActive == true); // c duoc lay tu thg Category o doan _context.Category
             return category.ToList();
         }
-        [HttpGet("getSanPham")]
-        public ActionResult<List<SanPham>> getSanPham(){ //generic
-            var sanPham = _context.SanPham.AsQueryable(); 
-            return sanPham.ToList();
+        [HttpGet("getProduct")]
+        public ActionResult<List<Product>> getSanPham(){ //generic
+            var product = _context.Product.AsQueryable(); 
+            return product.ToList();
         }
     }
 }
