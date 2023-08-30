@@ -23,7 +23,7 @@ namespace back.Controllers
             return category.ToList();
         }
         [HttpGet("getProduct")]
-        public ActionResult<List<Product>> getSanPham(){ //generic
+        public ActionResult<List<Product>> getProduct(){ //generic
             var product = _context.Product.AsQueryable(); 
             return product.ToList();
         }

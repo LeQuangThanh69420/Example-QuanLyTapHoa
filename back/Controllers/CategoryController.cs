@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace back.Dto
+namespace back.Controllers
 {
-    public class SanPhamInputDto
+    public class CategoryController
     {
         
     }
