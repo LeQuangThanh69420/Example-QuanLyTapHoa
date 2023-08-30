@@ -16,7 +16,7 @@ export class WorkBarComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.http.get(this.url + "getCategory").subscribe( response => {
+    this.http.get(this.url + "Category/getCategory").subscribe( response => {
       this.categorys = response;
     })
   }
