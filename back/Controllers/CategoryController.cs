@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using back.datacontext;
+using back.Dto.CategoryDto;
 using back.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,14 @@ namespace back.Controllers
             _context = context;
         }
         
-        [HttpGet("getCategory")]
-        public ActionResult<List<Category>> getCategory() {
-            var category = _context.Category.AsQueryable().Where(c => c.IsActive == true);
+        [HttpGet("getList")]
+        public ActionResult<List<CategoryOutputGetDto>> getList() {
+            var category = _context.Category.AsQueryable().Where(c => c.IsActive == true).Select(c => new CategoryOutputGetDto()
+            {
+                CategoryId = c.CategoryId,
+                CategoryName = c.CategoryName,
+                IsActive = c.IsActive,
+            });
             return category.ToList();
         }
     }

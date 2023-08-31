@@ -8,18 +8,22 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./work-bar.component.css']
 })
 export class WorkBarComponent implements OnInit{
-
-  url: string = environment.apiUrl;
-  categorys: any;
+  apiUrl: string = environment.apiUrl;
+  categorys: any[];
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.http.get(this.url + "Category/getCategory").subscribe( response => {
+    this.getList();
+  }
+
+  getList() {
+    this.http.get<any[]>(this.apiUrl + "Category/getList").subscribe( response => {
       this.categorys = response;
+    }, error => {
+      console.log(error);
     })
   }
 
-  
 }

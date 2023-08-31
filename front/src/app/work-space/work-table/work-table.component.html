@@ -1,1 +1,23 @@
-<p  style="padding-top: 100px;">work-table works! {{categoryId}}</p>
+<div style="padding-top: 100px;">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+            <th>ProductName</th>
+            <th>Status</th>
+            <th>DateIn</th>
+            <th>DateOut</th>
+            <th>Quantity</th>
+        </tr>
+        <tr *ngFor="let product of products">
+            <td>{{product.productName}}</td>
+            <td>{{product.status}}</td>
+            <td>{{product.dateIn}}</td>
+            <td>{{product.dateOut}}</td>
+            <td>{{product.quantity}}</td>
+        </tr>
+    </table>
+</div>
