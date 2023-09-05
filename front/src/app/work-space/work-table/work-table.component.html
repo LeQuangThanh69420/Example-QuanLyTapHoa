@@ -1,11 +1,22 @@
 <div style="padding-top: 100px;">
+    <div class="mb-3 d-flex">
+        <input type="text" class="col-3" placeholder="ProductName" name="productNameFilter"
+            [(ngModel)]="productNameFilter">
+        <input type="datetime-local" class="col-3" name="dateInFrom"
+            [(ngModel)]="dateInFrom">
+        <input type="datetime-local" class="col-3" name="nameInTo" [(ngModel)]="dateInTo">
+        <button class="btn btn-outline-primary btn-sm" (click)="getList()">Search</button>
+    </div>
+
     <style>
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid black;
         }
     </style>
 
-    <table>
+    <table class="mb-3">
         <tr>
             <th>STT</th>
             <th>ProductId</th>
@@ -15,14 +26,21 @@
             <th>DateOut</th>
             <th>Quantity</th>
         </tr>
-        <tr *ngFor="let product of productsOutputGetDto; let i = index">
+        <tr *ngFor="let product of productsOutputGetDto; let i = index" (click)="truyen(product)">
             <td>{{i+1}}</td>
             <td>{{product.productId}}</td>
             <td>{{product.productName}}</td>
             <td>{{product.status}}</td>
-            <td>{{product.dateIn}}</td>
-            <td>{{product.dateOut}}</td>
+            <td>{{product.dateIn | date:'MM/dd/yyyy HH:mm'}}</td>
+            <td>{{product.dateOut | date:'MM/dd/yyyy HH:mm'}}</td>
             <td>{{product.quantity}}</td>
         </tr>
     </table>
+
+    <div class="mb-3">
+        <button class="btn btn-outline-success btn-sm me-1">Create</button>
+        <button class="btn btn-outline-info btn-sm me-1">Clear</button>
+        <button class="btn btn-outline-secondary btn-sm me-1">Edit</button>
+        <button class="btn btn-outline-danger btn-sm  me-1">Delete</button>
+    </div>
 </div>
