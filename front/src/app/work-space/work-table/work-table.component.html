@@ -4,15 +4,20 @@
             border: 1px solid black;
         }
     </style>
+
     <table>
         <tr>
+            <th>STT</th>
+            <th>ProductId</th>
             <th>ProductName</th>
             <th>Status</th>
             <th>DateIn</th>
             <th>DateOut</th>
             <th>Quantity</th>
         </tr>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of productsOutputGetDto; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{product.productId}}</td>
             <td>{{product.productName}}</td>
             <td>{{product.status}}</td>
             <td>{{product.dateIn}}</td>

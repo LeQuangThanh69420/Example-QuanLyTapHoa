@@ -27,6 +27,7 @@ namespace back.Controllers
                   && (input.CategoryId == null || p.CategoryId == input.CategoryId))
             .Select(p => new ProductOutputGetDto()
                 {
+                    ProductId = p.ProductId,
                     ProductName = p.ProductName,
                     Status = p.Status,
                     DateIn = p.DateIn,

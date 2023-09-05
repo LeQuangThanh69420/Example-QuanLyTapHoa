@@ -7,6 +7,7 @@ namespace back.Dto.ProductDto
 {
     public class ProductOutputGetDto
     {
+        public long ProductId { get; set; }
         public string ProductName { get; set; }
         public bool Status { get; set; }
         public DateTime DateIn { get; set; }
