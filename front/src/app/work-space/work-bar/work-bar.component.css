@@ -1,0 +1,5 @@
+.b-example-vr {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 100vh;
+}

@@ -16,6 +16,7 @@
   dotnet watch run
   ```
 * Framework used:
+  - Microsoft.EntityFrameworkCore
   - Microsoft.EntityFrameworkCore.Design
   - Microsoft.EntityFrameworkCore.SqlServer
   - CloudinaryDotNet
