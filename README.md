@@ -16,6 +16,7 @@
   dotnet watch run
   ```
 * Framework used:
+  - Swashbuckle.AspNetCore
   - Microsoft.EntityFrameworkCore
   - Microsoft.EntityFrameworkCore.Design
   - Microsoft.EntityFrameworkCore.SqlServer
@@ -32,12 +33,14 @@
   npm update //updates all modules that are listed on package.json file and dependencies
   ng new <name> //create angular app
   ng serve //hosting angular app
-  ng g m //generate module and declare to the module you are standing
-  ng g c //generate component and declare to the module you are standing
-  ng g m --skip-tests
-  ng g c --skip-tests
+  ng g m <moduleName> | ng generate module <moduleName> //generate module and declare to the module you are standing
+  ng g c <componentName> | ng generate component <componentName>//generate component and declare to the module you are standing
+  ng g m <moduleName> --skip-tests
+  ng g c <componentName> --skip-tests
+  ng g s <serviceName> | ng generate service <serviceName>
   ```
 * Framework used:
+  - bootstrap
   - @angular/cli
   - ngx-spinner
   - ngx-toastr

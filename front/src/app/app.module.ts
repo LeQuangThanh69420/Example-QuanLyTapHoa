@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { WorkSpaceComponent } from './work-space/work-space.component';
 import { WorkBarComponent } from './work-space/work-bar/work-bar.component';
-import { WorkTableComponent } from './work-space/work-table/work-table.component';
+import { WorkTableComponent } from './work-space/work-bar/work-table/work-table.component';
 
 
 @NgModule({

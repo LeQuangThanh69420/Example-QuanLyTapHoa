@@ -4,7 +4,7 @@ import { LoginFrameComponent } from './login-frame/login-frame.component';
 import { SignupFrameComponent } from './signup-frame/signup-frame.component';
 import { HomeComponent } from './home/home.component';
 import { WorkSpaceComponent } from './work-space/work-space.component';
-import { WorkTableComponent } from './work-space/work-table/work-table.component';
+import { WorkTableComponent } from './work-space/work-bar/work-table/work-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupFrameComponent },
   { path: 'workspace', component: WorkSpaceComponent, 
     children: [
-      { path: ':categoryId', component: WorkTableComponent },
+      { path: ':categoryId', component: WorkTableComponent,},
     ],
   },
   { path: "**", component: HomeComponent, pathMatch: "full"},

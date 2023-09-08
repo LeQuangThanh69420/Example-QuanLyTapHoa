@@ -8,14 +8,6 @@
         <button class="btn btn-outline-primary btn-sm" (click)="getList()">Search</button>
     </div>
 
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-    </style>
-
     <table class="mb-3">
         <tr>
             <th>STT</th>
@@ -26,7 +18,7 @@
             <th>DateOut</th>
             <th>Quantity</th>
         </tr>
-        <tr *ngFor="let product of productsOutputGetDto; let i = index" (click)="truyen(product)">
+        <tr class="selectable" *ngFor="let product of products; let i = index" (click)="truyen(product, i)">
             <td>{{i+1}}</td>
             <td>{{product.productId}}</td>
             <td>{{product.productName}}</td>
@@ -38,9 +30,9 @@
     </table>
 
     <div class="mb-3">
-        <button class="btn btn-outline-success btn-sm me-1">Create</button>
-        <button class="btn btn-outline-info btn-sm me-1">Clear</button>
-        <button class="btn btn-outline-secondary btn-sm me-1">Edit</button>
-        <button class="btn btn-outline-danger btn-sm  me-1">Delete</button>
+        <button class="btn btn-outline-success btn-sm me-1" [disabled]="this.productPost.productId">Create</button>
+        <button class="btn btn-outline-info btn-sm me-1" (click)="clearChoice()" [disabled]="!this.productPost.productId">Clear</button>
+        <button class="btn btn-outline-secondary btn-sm me-1" [disabled]="!this.productPost.productId">Edit</button>
+        <button class="btn btn-outline-danger btn-sm  me-1" [disabled]="!this.productPost.productId">Delete</button>
     </div>
 </div>
