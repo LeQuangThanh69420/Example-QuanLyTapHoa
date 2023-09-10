@@ -17,8 +17,8 @@ namespace back.Controllers
             _context = context;
         }
         
-        [HttpGet("getList")]
-        public ActionResult<List<CategoryOutputGetDto>> getList() {
+        [HttpGet("getCategoryList")]
+        public ActionResult<List<CategoryOutputGetDto>> getCategoryList() {
             var category = _context.Category.AsQueryable()
             .Where(c => c.IsActive == true)
             .Select(c => new CategoryOutputGetDto()
@@ -29,6 +29,5 @@ namespace back.Controllers
             });
             return category.ToList();
         }
-
     }
 }

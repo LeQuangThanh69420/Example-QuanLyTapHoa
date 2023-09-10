@@ -1,11 +1,13 @@
 <div style="padding-top: 100px;">
     <div class="mb-3 d-flex">
-        <input type="text" class="col-3" placeholder="ProductName" name="productNameFilter"
-            [(ngModel)]="productNameFilter">
-        <input type="datetime-local" class="col-3" name="dateInFrom"
-            [(ngModel)]="dateInFrom">
+        <input type="text" class="col-3" name="productNameFilter" [(ngModel)]="productNameFilter" placeholder="ProductName">
+        <select name="" class="col-3" [(ngModel)]="status">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <input type="datetime-local" class="col-3" name="dateInFrom" [(ngModel)]="dateInFrom">
         <input type="datetime-local" class="col-3" name="nameInTo" [(ngModel)]="dateInTo">
-        <button class="btn btn-outline-primary btn-sm" (click)="getList()">Search</button>
+        <button class="btn btn-outline-primary btn-sm" (click)="getProductList()">Search</button>
     </div>
 
     <table class="mb-3">

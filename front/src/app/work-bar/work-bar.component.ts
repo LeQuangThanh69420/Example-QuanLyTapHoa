@@ -15,11 +15,11 @@ export class WorkBarComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getList();
+    this.getCategoryList();
   }
 
-  getList() {
-    this.http.get<any[]>(this.apiUrl + "Category/getList").subscribe( response => {
+  getCategoryList() {
+    this.http.get<any[]>(this.apiUrl + "Category/getCategoryList").subscribe( response => {
       this.categorys = response;
     }, error => {
       console.log(error);

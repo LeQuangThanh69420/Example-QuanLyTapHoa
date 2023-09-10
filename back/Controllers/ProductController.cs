@@ -17,8 +17,8 @@ namespace back.Controllers
             _context = context;
         }
 
-        [HttpGet("getList")]
-        public ActionResult<List<ProductOutputGetDto>> getList([FromQuery]ProductInputGetDto input) {
+        [HttpGet("getProductList")]
+        public ActionResult<List<ProductOutputGetDto>> getProductList([FromQuery]ProductInputGetDto input) {
             var product = _context.Product.AsQueryable()
             .Where(p => (string.IsNullOrWhiteSpace(input.ProductNameFilter) || p.ProductName.Contains(input.ProductNameFilter))
                   && (input.Status == null || p.Status == input.Status)

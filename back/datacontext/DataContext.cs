@@ -10,9 +10,9 @@ namespace back.datacontext
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions options) : base(options)
-        {}
-
-        public DbSet<Category> Category { get; set; } // DbSet<Ten_Entity> Ten_bang {get; set;}
+        {
+        }
+        public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
     }
 }

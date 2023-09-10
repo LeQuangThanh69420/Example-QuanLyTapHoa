@@ -17,6 +17,7 @@ export class WorkTableComponent implements OnInit {
   productNameFilter = "";
   dateInFrom = "";
   dateInTo = "";
+  status = "";
   categoryId: any;
 
   products: ProductOutputGetDto[];
@@ -27,13 +28,14 @@ export class WorkTableComponent implements OnInit {
 
   ngOnInit() {
     this.categoryId = this.route.snapshot.paramMap.get('categoryId');
-    this.getList();
+    this.getProductList();
   }
 
-  getList() {
+  getProductList() {
     this.http.get<ProductOutputGetDto[]>(this.apiUrl +
-      "Product/getList?ProductNameFilter=" + this.productNameFilter +
-      "&Status=" + "&DateInFrom=" + this.dateInFrom +
+      "Product/getProductList?ProductNameFilter=" + this.productNameFilter +
+      "&Status=" + this.status +
+      "&DateInFrom=" + this.dateInFrom +
       "&DateInTo=" + this.dateInTo +
       "&CategoryId=" + this.categoryId
     ).subscribe(response => {
