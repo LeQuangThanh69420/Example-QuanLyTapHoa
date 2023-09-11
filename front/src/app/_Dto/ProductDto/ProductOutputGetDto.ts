@@ -5,6 +5,7 @@ export class ProductOutputGetDto {
     dateIn: Date;
     dateOut: Date;
     quantity: number;
+    categoryId: any;
     constructor() {
     }
 }

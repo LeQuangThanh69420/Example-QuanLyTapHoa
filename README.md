@@ -37,7 +37,7 @@
   ng g c <componentName> | ng generate component <componentName>//generate component and declare to the module you are standing
   ng g m <moduleName> --skip-tests
   ng g c <componentName> --skip-tests
-  ng g s <serviceName> | ng generate service <serviceName>
+  ng g s <serviceName> | ng generate service <serviceName> --skip-tests
   ```
 * Framework used:
   - bootstrap

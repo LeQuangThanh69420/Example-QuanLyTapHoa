@@ -1,13 +1,19 @@
 <div style="padding-top: 100px;">
-    <div class="mb-3 d-flex">
-        <input type="text" class="col-3" name="productNameFilter" [(ngModel)]="productNameFilter" placeholder="ProductName">
-        <select name="" class="col-3" [(ngModel)]="status">
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-        <input type="datetime-local" class="col-3" name="dateInFrom" [(ngModel)]="dateInFrom">
-        <input type="datetime-local" class="col-3" name="nameInTo" [(ngModel)]="dateInTo">
-        <button class="btn btn-outline-primary btn-sm" (click)="getProductList()">Search</button>
+    <div>
+        <h1>Search</h1>
+        <div class="mb-3 d-flex">
+            <input type="text" name="productNameFilter" [(ngModel)]="productInputGetDto.productNameFilter"
+                placeholder="ProductName">
+            <select name="status" [(ngModel)]="productInputGetDto.status">
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+            <input type="datetime-local" name="dateInFrom" [(ngModel)]="productInputGetDto.dateInFrom">
+            <input type="datetime-local" name="dateInTo" [(ngModel)]="productInputGetDto.dateInTo">
+            <input type="datetime-local" name="dateOutFrom" [(ngModel)]="productInputGetDto.dateOutFrom">
+            <input type="datetime-local" name="dateOutTo" [(ngModel)]="productInputGetDto.dateOutTo">
+            <button class="btn btn-outline-primary btn-sm" (click)="getProductList()">Search</button>
+        </div>
     </div>
 
     <table class="mb-3">
@@ -32,9 +38,25 @@
     </table>
 
     <div class="mb-3">
-        <button class="btn btn-outline-success btn-sm me-1" [disabled]="this.productPost.productId">Create</button>
-        <button class="btn btn-outline-info btn-sm me-1" (click)="clearChoice()" [disabled]="!this.productPost.productId">Clear</button>
-        <button class="btn btn-outline-secondary btn-sm me-1" [disabled]="!this.productPost.productId">Edit</button>
-        <button class="btn btn-outline-danger btn-sm  me-1" [disabled]="!this.productPost.productId">Delete</button>
+        <button class="btn btn-success btn-sm me-1" [disabled]="this.productInputPost.productId" (click)="createOrEditProduct()">Create</button>
+        <button class="btn btn-info btn-sm me-1" (click)="clearChoice()"
+            [disabled]="!this.productInputPost.productId">Clear</button>
+        <button class="btn btn-secondary btn-sm me-1" [disabled]="!this.productInputPost.productId" (click)="createOrEditProduct()">Edit</button>
+        <button class="btn btn-danger btn-sm  me-1" [disabled]="!this.productInputPost.productId" (click)="deleteProduct()">Delete</button>
+    </div>
+
+    <div>
+        <h1 *ngIf="!this.productInputPost.productId">Create</h1>
+        <h1 *ngIf="this.productInputPost.productId">Edit</h1>
+        <div class="mb-3 d-flex">
+            <input type="text" name="productName" [(ngModel)]="productInputPost.productName" placeholder="ProductName">
+        <select name="status" [(ngModel)]="productInputPost.status" (change)="onStatusChange($event)">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <input type="datetime-local" name="dateIn" [(ngModel)]="productInputPost.dateIn">
+        <input type="datetime-local" name="dateOut" [(ngModel)]="productInputPost.dateOut">
+        <input type="number" name="quantity" [(ngModel)]="productInputPost.quantity">
+        </div>
     </div>
 </div>

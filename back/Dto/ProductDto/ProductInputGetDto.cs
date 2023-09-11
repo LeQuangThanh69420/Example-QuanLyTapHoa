@@ -12,6 +12,8 @@ namespace back.Dto.ProductDto
         public bool? Status { get; set; }
         public DateTime? DateInFrom { get; set; }
         public DateTime? DateInTo { get; set; }
+        public DateTime? DateOutFrom { get; set; }
+        public DateTime? DateOutTo { get; set; }
         public long? CategoryId { get; set; }
     }
 }
