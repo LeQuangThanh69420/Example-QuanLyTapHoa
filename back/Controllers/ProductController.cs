@@ -6,6 +6,7 @@ using back.datacontext;
 using back.Dto.ProductDto;
 using back.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace back.Controllers
 {
@@ -18,8 +19,8 @@ namespace back.Controllers
         }
 
         [HttpGet("getProductList")]
-        public ActionResult<List<ProductOutputGetDto>> getProductList([FromQuery]ProductInputGetDto input) {
-            var product = _context.Product.AsQueryable()
+        public async Task<ActionResult<List<ProductOutputGetDto>>> getProductList([FromQuery]ProductInputGetDto input) {
+            var product = await _context.Product.AsQueryable()
             .Where(p => (string.IsNullOrWhiteSpace(input.ProductNameFilter) || p.ProductName.Contains(input.ProductNameFilter))
                   && (input.Status == null || p.Status == input.Status)
                   && (input.DateInFrom == null || p.DateIn >= input.DateInFrom)
@@ -36,12 +37,13 @@ namespace back.Controllers
                     DateOut = p.DateOut,
                     Quantity = p.Quantity,
                     CategoryId = p.CategoryId,
-                }); 
-            return product.ToList();
+                })
+            .ToListAsync();
+            return product;
         }
 
         [HttpPost("createOrEditProduct")]
-        public void createOrEditProduct(ProductInputPostDto input) {
+        public async Task<ActionResult> createOrEditProduct(ProductInputPostDto input) {
             if(input.ProductId == 0 || input.ProductId == null) 
             {
                 var newProduct = new Product();
@@ -52,7 +54,8 @@ namespace back.Controllers
                 newProduct.Quantity = input.Quantity;
                 newProduct.CategoryId = input.CategoryId;
                 _context.Product.Add(newProduct);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return Ok("Them thanh cong");
             }            
             else
             {
@@ -63,15 +66,17 @@ namespace back.Controllers
                 product.DateOut = input.DateOut;
                 product.Quantity = input.Quantity;
                 product.CategoryId = input.CategoryId;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return Ok("Sua thanh cong");
             }
         }
 
         [HttpDelete("deleteProduct")]
-        public void deleteProduct(long id) {
+        public async Task<ActionResult> deleteProduct(long id) {
             var product = _context.Product.Find(id);
             _context.Product.Remove(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return Ok("Xoa thanh cong");
         }
     }
 }

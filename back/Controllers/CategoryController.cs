@@ -6,6 +6,7 @@ using back.datacontext;
 using back.Dto.CategoryDto;
 using back.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace back.Controllers
 {
@@ -18,16 +19,17 @@ namespace back.Controllers
         }
         
         [HttpGet("getCategoryList")]
-        public ActionResult<List<CategoryOutputGetDto>> getCategoryList() {
-            var category = _context.Category.AsQueryable()
+        public async Task<ActionResult<List<CategoryOutputGetDto>>> getCategoryList() {
+            var category = await _context.Category.AsQueryable()
             .Where(c => c.IsActive == true)
             .Select(c => new CategoryOutputGetDto()
             {
                 CategoryId = c.CategoryId,
                 CategoryName = c.CategoryName,
                 IsActive = c.IsActive,
-            });
-            return category.ToList();
+            })
+            .ToListAsync();
+            return category;
         }
     }
 }
