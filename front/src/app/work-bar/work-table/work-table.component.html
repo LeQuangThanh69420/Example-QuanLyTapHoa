@@ -1,62 +1,75 @@
 <div style="padding-top: 100px;">
-    <div>
+    <div class="mb-3">
         <h1>Search</h1>
-        <div class="mb-3 d-flex">
-            <input type="text" name="productNameFilter" [(ngModel)]="productInputGetDto.productNameFilter"
+        <div class="row">
+            <input class="col-4" type="text" name="productNameFilter" [(ngModel)]="productInputGetDto.productNameFilter"
                 placeholder="ProductName">
-            <select name="status" [(ngModel)]="productInputGetDto.status">
+            <select class="col-4" name="status" [(ngModel)]="productInputGetDto.status">
                 <option value="true">true</option>
                 <option value="false">false</option>
             </select>
-            <input type="datetime-local" name="dateInFrom" [(ngModel)]="productInputGetDto.dateInFrom">
-            <input type="datetime-local" name="dateInTo" [(ngModel)]="productInputGetDto.dateInTo">
-            <input type="datetime-local" name="dateOutFrom" [(ngModel)]="productInputGetDto.dateOutFrom">
-            <input type="datetime-local" name="dateOutTo" [(ngModel)]="productInputGetDto.dateOutTo">
-            <button class="btn btn-outline-primary btn-sm" (click)="getProductList()">Search</button>
+            <button class="btn btn-outline-primary btn-sm col-2" (click)="getProductList()">Search</button>
+        </div>
+        <div class="row">
+            <input class="col-4" type="datetime-local" name="dateInFrom" [(ngModel)]="productInputGetDto.dateInFrom">
+            <input class="col-4" type="datetime-local" name="dateInTo" [(ngModel)]="productInputGetDto.dateInTo">
+        </div>
+
+        <div class="row">
+            <input class="col-4" type="datetime-local" name="dateOutFrom" [(ngModel)]="productInputGetDto.dateOutFrom">
+            <input class="col-4" type="datetime-local" name="dateOutTo" [(ngModel)]="productInputGetDto.dateOutTo">
         </div>
     </div>
-
-    <table class="mb-3">
-        <tr>
-            <th>STT</th>
-            <th>ProductId</th>
-            <th>ProductName</th>
-            <th>Status</th>
-            <th>DateIn</th>
-            <th>DateOut</th>
-            <th>Quantity</th>
-        </tr>
-        <tr class="selectable" *ngFor="let product of products; let i = index" (click)="truyen(product, i)">
-            <td>{{i+1}}</td>
-            <td>{{product.productId}}</td>
-            <td>{{product.productName}}</td>
-            <td>{{product.status}}</td>
-            <td>{{product.dateIn | date:'MM/dd/yyyy HH:mm'}}</td>
-            <td>{{product.dateOut | date:'MM/dd/yyyy HH:mm'}}</td>
-            <td>{{product.quantity}}</td>
-        </tr>
-    </table>
 
     <div class="mb-3">
-        <button class="btn btn-success btn-sm me-1" [disabled]="this.productInputPost.productId" (click)="createOrEditProduct()">Create</button>
-        <button class="btn btn-info btn-sm me-1" (click)="clearChoice()"
-            [disabled]="!this.productInputPost.productId">Clear</button>
-        <button class="btn btn-secondary btn-sm me-1" [disabled]="!this.productInputPost.productId" (click)="createOrEditProduct()">Edit</button>
-        <button class="btn btn-danger btn-sm  me-1" [disabled]="!this.productInputPost.productId" (click)="deleteProduct()">Delete</button>
+        <table style="width: 100%;">
+            <tr>
+                <th>STT</th>
+                <th>ProductId</th>
+                <th>ProductName</th>
+                <th>Status</th>
+                <th>DateIn</th>
+                <th>DateOut</th>
+                <th>Quantity</th>
+            </tr>
+            <tr class="selectable" *ngFor="let product of products; let i = index" (click)="truyen(product, i)">
+                <td>{{i+1}}</td>
+                <td>{{product.productId}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.status}}</td>
+                <td>{{product.dateIn | date:'MM/dd/yyyy HH:mm'}}</td>
+                <td>{{product.dateOut | date:'MM/dd/yyyy HH:mm'}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </table>
     </div>
 
-    <div>
+    <div class="mb-3">
+        <button class="btn btn-success btn-sm me-1" [disabled]="this.productInputPost.productId"
+            (click)="createOrEditProduct()">Create</button>
+        <button class="btn btn-info btn-sm me-1" (click)="clearChoice()"
+            [disabled]="!this.productInputPost.productId">Clear</button>
+        <button class="btn btn-secondary btn-sm me-1" [disabled]="!this.productInputPost.productId"
+            (click)="createOrEditProduct()">Edit</button>
+        <button class="btn btn-danger btn-sm  me-1" [disabled]="!this.productInputPost.productId"
+            (click)="deleteProduct()">Delete</button>
+    </div>
+
+    <div class="mb-3">
         <h1 *ngIf="!this.productInputPost.productId">Create</h1>
         <h1 *ngIf="this.productInputPost.productId">Edit</h1>
-        <div class="mb-3 d-flex">
-            <input type="text" name="productName" [(ngModel)]="productInputPost.productName" placeholder="ProductName">
-        <select name="status" [(ngModel)]="productInputPost.status" (change)="onStatusChange($event)">
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select>
-        <input type="datetime-local" name="dateIn" [(ngModel)]="productInputPost.dateIn">
-        <input type="datetime-local" name="dateOut" [(ngModel)]="productInputPost.dateOut">
-        <input type="number" name="quantity" [(ngModel)]="productInputPost.quantity">
+        <div class="row">
+            <input class="col-4" type="text" name="productName" [(ngModel)]="productInputPost.productName" placeholder="ProductName">
+            <select class="col-4" name="status" [(ngModel)]="productInputPost.status" (change)="onStatusChange($event)">
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+            <input class="col-4" type="number" name="quantity" [(ngModel)]="productInputPost.quantity">
         </div>
+        <div class="row">
+            <input class="col-6" type="datetime-local" name="dateIn" [(ngModel)]="productInputPost.dateIn">
+            <input class="col-6" type="datetime-local" name="dateOut" [(ngModel)]="productInputPost.dateOut">
+        </div>
+
     </div>
 </div>
