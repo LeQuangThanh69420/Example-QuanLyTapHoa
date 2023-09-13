@@ -55,7 +55,8 @@ namespace back.Controllers
                 newProduct.CategoryId = input.CategoryId;
                 _context.Product.Add(newProduct);
                 await _context.SaveChangesAsync();
-                return Ok("Them thanh cong");
+                return Ok(new { message = "Them thanh cong" });
+
             }            
             else
             {
@@ -67,7 +68,8 @@ namespace back.Controllers
                 product.Quantity = input.Quantity;
                 product.CategoryId = input.CategoryId;
                 await _context.SaveChangesAsync();
-                return Ok("Sua thanh cong");
+                return Ok(new { message = "Sua thanh cong" });
+
             }
         }
 
@@ -76,7 +78,7 @@ namespace back.Controllers
             var product = _context.Product.Find(id);
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
-            return Ok("Xoa thanh cong");
+            return Ok(new { message = "Xoa thanh cong" });
         }
     }
 }

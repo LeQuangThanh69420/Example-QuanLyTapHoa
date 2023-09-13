@@ -46,15 +46,10 @@ export class WorkTableComponent implements OnInit {
   }
 
   createOrEditProduct() {
-    this.http.post(this.apiUrl + "Product/createOrEditProduct", this.productInputPost).subscribe(response => {
+    this.http.post<any>(this.apiUrl + "Product/createOrEditProduct", this.productInputPost).subscribe(response => {
       console.log(response);
       this.getProductList();
-      if (this.productInputPost.productId == null || this.productInputPost.productId == 0) {
-        alert("Them thanh cong");
-      }
-      else {
-        alert("Sua thanh cong");
-      }
+      alert(response.message);
       this.productInputPost = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
     }, error => {
       console.log(error);
@@ -64,10 +59,10 @@ export class WorkTableComponent implements OnInit {
 
   deleteProduct() {
     if (confirm("Ban co chac muon xoa!!!!") == true) {
-      this.http.delete(this.apiUrl + "Product/deleteProduct?id=" + this.productInputPost.productId).subscribe(response => {
+      this.http.delete<any>(this.apiUrl + "Product/deleteProduct?id=" + this.productInputPost.productId).subscribe(response => {
         console.log(response);
         this.getProductList();
-        alert("Xoa thanh cong");
+        alert(response.message);
         this.productInputPost = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
       }, error => {
         console.log(error);
