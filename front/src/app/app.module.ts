@@ -13,6 +13,7 @@ import { WorkTableComponent } from './work-bar/work-table/work-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from "ngx-toastr";
 
 
 @NgModule({
@@ -29,8 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxSpinnerModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

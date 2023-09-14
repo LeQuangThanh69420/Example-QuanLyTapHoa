@@ -1,4 +1,4 @@
-export class ProductOutputGetDto {
+export interface ProductOutputGetDto {
     productId: number;
     productName: string;
     status: boolean;
@@ -6,6 +6,4 @@ export class ProductOutputGetDto {
     dateOut: Date;
     quantity: number;
     categoryId: any;
-    constructor() {
-    }
 }

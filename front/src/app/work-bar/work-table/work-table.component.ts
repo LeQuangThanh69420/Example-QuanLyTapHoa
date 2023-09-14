@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductInputGetDto } from 'src/app/_Dto/ProductDto/ProductInputGetDto';
 import { ProductInputPostDto } from 'src/app/_Dto/ProductDto/ProductInputPostDto';
 import { ProductOutputGetDto } from 'src/app/_Dto/ProductDto/ProductOutputGetDto';
+import { ControllerService } from 'src/app/_service/controller.service';
 import { TableService } from 'src/app/_service/table.service';
 import { environment } from 'src/environment/environment';
 
@@ -13,57 +14,48 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./work-table.component.css']
 })
 export class WorkTableComponent implements OnInit {
-  apiUrl: string = environment.apiUrl;
   readonly rows = document.getElementsByClassName("selectable") as HTMLCollectionOf<Element>;
+  apiUrl: string = environment.apiUrl;
+  categoryId = this.route.snapshot.paramMap.get('categoryId')
 
   products: ProductOutputGetDto[];
   productInputGetDto: ProductInputGetDto = new ProductInputGetDto();
-  productInputPost: ProductInputPostDto = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
+  productInputPostDto: ProductInputPostDto = new ProductInputPostDto(this.categoryId);
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private tableService: TableService) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private tableService: TableService, private controllerService: ControllerService) {
   }
 
   ngOnInit() {
-    this.productInputGetDto.categoryId = this.route.snapshot.paramMap.get('categoryId');
-    this.productInputPost.categoryId = this.route.snapshot.paramMap.get('categoryId');
+    this.productInputGetDto.categoryId = this.categoryId;
     this.getProductList();
   }
 
   getProductList() {
-    this.http.get<ProductOutputGetDto[]>(this.apiUrl +
-      "Product/getProductList?ProductNameFilter=" + this.productInputGetDto.productNameFilter +
-      "&Status=" + this.productInputGetDto.status +
-      "&DateInFrom=" + this.productInputGetDto.dateInFrom +
-      "&DateInTo=" + this.productInputGetDto.dateInTo +
-      "&DateOutFrom=" + this.productInputGetDto.dateOutFrom +
-      "&DateOutTo=" + this.productInputGetDto.dateOutTo +
-      "&CategoryId=" + this.productInputGetDto.categoryId
-    ).subscribe(response => {
+    this.controllerService.getProductList(this.productInputGetDto).subscribe(response => {
       this.products = response;
     }, error => {
       console.log(error);
     })
   }
 
-  createOrEditProduct() {
-    this.http.post<any>(this.apiUrl + "Product/createOrEditProduct", this.productInputPost).subscribe(response => {
+  createOrEditProduct() { 
+    this.controllerService.createOrEditProduct(this.productInputPostDto).subscribe(response => {
       console.log(response);
       this.getProductList();
       alert(response.message);
-      this.productInputPost = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
-    }, error => {
+      this.productInputPostDto = new ProductInputPostDto(this.categoryId);
+    }, (error) => {
       console.log(error);
-      alert(error.message);
+      alert(error.error.title);
     })
   }
 
   deleteProduct() {
     if (confirm("Ban co chac muon xoa!!!!") == true) {
-      this.http.delete<any>(this.apiUrl + "Product/deleteProduct?id=" + this.productInputPost.productId).subscribe(response => {
-        console.log(response);
+      this.controllerService.deleteProduct(this.productInputPostDto).subscribe(response => {
         this.getProductList();
         alert(response.message);
-        this.productInputPost = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
+        this.productInputPostDto = new ProductInputPostDto(this.categoryId);
       }, error => {
         console.log(error);
         alert(error.message);
@@ -73,15 +65,15 @@ export class WorkTableComponent implements OnInit {
 
   truyen(product: ProductOutputGetDto, i: number) {
     this.tableService.selectTableRow(this.rows, i);
-    this.productInputPost = product;
+    this.productInputPostDto = product;
   }
 
   clearChoice() {
     this.tableService.clearTableChoice(this.rows);
-    this.productInputPost = new ProductInputPostDto(this.route.snapshot.paramMap.get('categoryId'));
+    this.productInputPostDto = new ProductInputPostDto(this.categoryId);
   }
 
   onStatusChange(event: any) {
-    this.productInputPost.status = event.target.value === 'true';
+    this.productInputPostDto.status = event.target.value === 'true';
   }
 }

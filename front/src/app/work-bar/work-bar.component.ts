@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environment/environment';
+import { ControllerService } from '../_service/controller.service';
+import { CategoryOutputGetDto } from '../_Dto/CategoryDto/CategoryOutputGetDto';
 
 @Component({
   selector: 'app-work-bar',
@@ -8,10 +8,9 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./work-bar.component.css']
 })
 export class WorkBarComponent implements OnInit{
-  apiUrl: string = environment.apiUrl;
-  categorys: any[];
+  categorys: CategoryOutputGetDto[];
 
-  constructor(private http: HttpClient) {
+  constructor(private controllerService: ControllerService) {
   }
 
   ngOnInit() {
@@ -19,7 +18,7 @@ export class WorkBarComponent implements OnInit{
   }
 
   getCategoryList() {
-    this.http.get<any[]>(this.apiUrl + "Category/getCategoryList").subscribe( response => {
+    this.controllerService.getCategoryList().subscribe( response => {
       this.categorys = response;
     }, error => {
       console.log(error);

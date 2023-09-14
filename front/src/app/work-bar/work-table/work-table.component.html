@@ -45,30 +45,30 @@
     </div>
 
     <div class="mb-3">
-        <button class="btn btn-success btn-sm me-1" [disabled]="this.productInputPost.productId"
+        <button class="btn btn-success btn-sm me-1" [disabled]="this.productInputPostDto.productId"
             (click)="createOrEditProduct()">Create</button>
         <button class="btn btn-info btn-sm me-1" (click)="clearChoice()"
-            [disabled]="!this.productInputPost.productId">Clear</button>
-        <button class="btn btn-secondary btn-sm me-1" [disabled]="!this.productInputPost.productId"
+            [disabled]="!this.productInputPostDto.productId">Clear</button>
+        <button class="btn btn-secondary btn-sm me-1" [disabled]="!this.productInputPostDto.productId"
             (click)="createOrEditProduct()">Edit</button>
-        <button class="btn btn-danger btn-sm  me-1" [disabled]="!this.productInputPost.productId"
+        <button class="btn btn-danger btn-sm  me-1" [disabled]="!this.productInputPostDto.productId"
             (click)="deleteProduct()">Delete</button>
     </div>
 
     <div class="mb-3">
-        <h1 *ngIf="!this.productInputPost.productId">Create</h1>
-        <h1 *ngIf="this.productInputPost.productId">Edit</h1>
+        <h1 *ngIf="!this.productInputPostDto.productId">Create</h1>
+        <h1 *ngIf="this.productInputPostDto.productId">Edit</h1>
         <div class="row">
-            <input class="col-4" type="text" name="productName" [(ngModel)]="productInputPost.productName" placeholder="ProductName">
-            <select class="col-4" name="status" [(ngModel)]="productInputPost.status" (change)="onStatusChange($event)">
+            <input class="col-4" type="text" name="productName" [(ngModel)]="productInputPostDto.productName" placeholder="ProductName">
+            <select class="col-4" name="status" [(ngModel)]="productInputPostDto.status" (change)="onStatusChange($event)">
                 <option value="true">true</option>
                 <option value="false">false</option>
             </select>
-            <input class="col-4" type="number" name="quantity" [(ngModel)]="productInputPost.quantity">
+            <input class="col-4" type="number" name="quantity" [(ngModel)]="productInputPostDto.quantity">
         </div>
         <div class="row">
-            <input class="col-6" type="datetime-local" name="dateIn" [(ngModel)]="productInputPost.dateIn">
-            <input class="col-6" type="datetime-local" name="dateOut" [(ngModel)]="productInputPost.dateOut">
+            <input class="col-6" type="datetime-local" name="dateIn" [(ngModel)]="productInputPostDto.dateIn">
+            <input class="col-6" type="datetime-local" name="dateOut" [(ngModel)]="productInputPostDto.dateOut">
         </div>
 
     </div>
