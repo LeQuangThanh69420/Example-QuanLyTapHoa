@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupFrameComponent },
   { path: 'workbar', component: WorkBarComponent, 
     children: [
+      { path: '', redirectTo: '1', pathMatch: 'full' },
       { path: ':categoryId', component: WorkTableComponent,},
     ],
   },
