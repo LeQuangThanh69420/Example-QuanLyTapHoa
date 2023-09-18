@@ -15,9 +15,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private toastr:ToastrService){}
+  constructor(){}
   
-  canActivate(): boolean { // Observable<boolean>
+  canActivate() { 
     return false;
   }
   
