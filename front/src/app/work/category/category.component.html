@@ -1,0 +1,13 @@
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-secondary" style="width: 250px;">
+        <hr style="margin-top: 49px;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li *ngFor="let category of categorys">
+                <a [href]="'/work/category/' + category.categoryId" class="nav-link text-white">► {{category.categoryName}}</a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+    <div class="b-example-vr"></div>
+    <router-outlet></router-outlet>
+</main>

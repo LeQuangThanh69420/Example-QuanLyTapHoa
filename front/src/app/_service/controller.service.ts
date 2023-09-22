@@ -5,6 +5,7 @@ import { CategoryOutputGetDto } from '../_Dto/CategoryDto/CategoryOutputGetDto';
 import { ProductInputPostDto } from '../_Dto/ProductDto/ProductInputPostDto';
 import { ProductOutputGetDto } from '../_Dto/ProductDto/ProductOutputGetDto';
 import { ProductInputGetDto } from '../_Dto/ProductDto/ProductInputGetDto';
+import { AccountLoginInputDto } from '../_Dto/Account/AccountLoginInputDto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,14 @@ export class ControllerService {
   constructor(private http: HttpClient) {
   }
 
+  //Account
+  register() {
+    
+  }
+
+  login(accountLoginInputDto: AccountLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "Account/login", accountLoginInputDto);
+  }
 
   //Category
   getCategoryList() {

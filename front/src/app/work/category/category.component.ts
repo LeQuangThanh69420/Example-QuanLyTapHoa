@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ControllerService } from '../_service/controller.service';
-import { CategoryOutputGetDto } from '../_Dto/CategoryDto/CategoryOutputGetDto';
+import { CategoryOutputGetDto } from 'src/app/_Dto/CategoryDto/CategoryOutputGetDto';
+import { ControllerService } from 'src/app/_service/controller.service';
 
 @Component({
-  selector: 'app-work-bar',
-  templateUrl: './work-bar.component.html',
-  styleUrls: ['./work-bar.component.css']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
-export class WorkBarComponent implements OnInit{
+export class CategoryComponent {
   categorys: CategoryOutputGetDto[];
 
   constructor(private controllerService: ControllerService) {
@@ -24,5 +24,4 @@ export class WorkBarComponent implements OnInit{
       console.log(error);
     })
   }
-
 }

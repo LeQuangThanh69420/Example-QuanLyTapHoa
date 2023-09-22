@@ -8,12 +8,13 @@ import { SignupFrameComponent } from './signup-frame/signup-frame.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { WorkBarComponent } from './work-bar/work-bar.component';
-import { WorkTableComponent } from './work-bar/work-table/work-table.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from "ngx-toastr";
+import { CategoryComponent } from "./work/category/category.component";
+import { ProductComponent } from './work/category/product/product.component';
+import { WorkComponent } from './work/work.component';
 
 
 @NgModule({
@@ -22,8 +23,9 @@ import { ToastrModule } from "ngx-toastr";
     LoginFrameComponent,
     SignupFrameComponent,
     HomeComponent,
-    WorkBarComponent,
-    WorkTableComponent,
+    CategoryComponent,
+    ProductComponent,
+    WorkComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,9 @@ import { ToastrModule } from "ngx-toastr";
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

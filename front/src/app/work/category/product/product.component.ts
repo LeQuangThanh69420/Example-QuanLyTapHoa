@@ -9,11 +9,11 @@ import { TableService } from 'src/app/_service/table.service';
 import { environment } from 'src/environment/environment';
 
 @Component({
-  selector: 'app-work-table',
-  templateUrl: './work-table.component.html',
-  styleUrls: ['./work-table.component.css']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css']
 })
-export class WorkTableComponent implements OnInit {
+export class ProductComponent implements OnInit{
   readonly rows = document.getElementsByClassName("selectable") as HTMLCollectionOf<Element>;
   apiUrl: string = environment.apiUrl;
   categoryId = this.route.snapshot.paramMap.get('categoryId')
@@ -38,11 +38,11 @@ export class WorkTableComponent implements OnInit {
     })
   }
 
-  createOrEditProduct() { 
+  createOrEditProduct() {
     this.controllerService.createOrEditProduct(this.productInputPostDto).subscribe(response => {
-      console.log(response);
       this.getProductList();
-      alert(response.message);
+      console.log(response);
+      alert(response);
       this.productInputPostDto = new ProductInputPostDto(this.categoryId);
     }, (error) => {
       console.log(error);
@@ -54,7 +54,8 @@ export class WorkTableComponent implements OnInit {
     if (confirm("Ban co chac muon xoa!!!!") == true) {
       this.controllerService.deleteProduct(this.productInputPostDto).subscribe(response => {
         this.getProductList();
-        alert(response.message);
+        console.log(response);
+        alert(response);
         this.productInputPostDto = new ProductInputPostDto(this.categoryId);
       }, error => {
         console.log(error);
@@ -77,3 +78,4 @@ export class WorkTableComponent implements OnInit {
     this.productInputPostDto.status = event.target.value === 'true';
   }
 }
+
