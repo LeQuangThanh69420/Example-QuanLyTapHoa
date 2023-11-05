@@ -29,7 +29,14 @@ export class LoginFrameComponent implements OnInit {
       this.currentUser = response.currentUser;
       window.localStorage.setItem("currentUser", this.currentUser);
     }, error => {
-      this.toastr.error(error.error);
+      if(error.status == 400) {
+        error.error.errors.Username = error.error.errors.Username ?? "";
+        error.error.errors.Password = error.error.errors.Password ?? "";
+        this.toastr.error(error.error.errors.Username + " " + error.error.errors.Password);
+      }
+      else {
+        this.toastr.error(error.error);
+      }
       //alert(error.error);
     });
   }

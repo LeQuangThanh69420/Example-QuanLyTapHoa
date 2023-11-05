@@ -78,5 +78,23 @@ namespace back.Controllers
             await _context.SaveChangesAsync();
             return Ok(new { message = "Xoa thanh cong"});
         }
+
+        [HttpGet("getProductList2")]
+        public async Task<List<ProductOutputGetDto>> getProductList2(long categoryId) {
+            var product = await _context.Product.AsQueryable()
+            .Where(p => p.CategoryId == categoryId)
+            .Select(p => new ProductOutputGetDto()
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    Status = p.Status,
+                    DateIn = p.DateIn,
+                    DateOut = p.DateOut,
+                    Quantity = p.Quantity,
+                    CategoryId = p.CategoryId,
+                })
+            .ToListAsync();
+            return product;
+        }
     }
 }
