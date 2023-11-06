@@ -44,21 +44,11 @@ namespace back.Controllers
                 IsActive = c.IsActive,
             })
             .ToListAsync();
-            var categoryList = new List<CategoryOutputGetDto2>();
             foreach (var c in category)
             {
-                var productSearchOutput = await _productController.getProductList2(c.CategoryId);
-                var categoryDto = new CategoryOutputGetDto2()
-                {
-                    CategoryId = c.CategoryId,
-                    CategoryName = c.CategoryName,
-                    IsActive = c.IsActive,
-                    ProductList = productSearchOutput,
-                };
-
-                categoryList.Add(categoryDto);
+                c.ProductList = await _productController.getProductList2(c.CategoryId);
             }
-            return categoryList;
+            return category;
         }
     }
 }
