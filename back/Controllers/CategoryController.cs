@@ -33,22 +33,24 @@ namespace back.Controllers
             .ToListAsync();
             return category;
         }
+        
         [HttpGet("getCategoryList2")]
         public async Task<ActionResult<List<CategoryOutputGetDto2>>> getCategoryList2() {
-            var category = await _context.Category.AsQueryable()
-            .Where(c => c.IsActive == true)
-            .Select(c => new CategoryOutputGetDto2()
+            var category = from Category in _context.Category
+            where Category.IsActive == true
+            select new CategoryOutputGetDto2()
             {
-                CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName,
-                IsActive = c.IsActive,
-            })
-            .ToListAsync();
-            foreach (var c in category)
+                CategoryId = Category.CategoryId,
+                CategoryName = Category.CategoryName,
+                IsActive = Category.IsActive,
+            };
+            var abc = await category.ToListAsync();
+            foreach (var c in abc)
             {
                 c.ProductList = await _productController.getProductList2(c.CategoryId);
             }
-            return category;
+
+            return abc;
         }
     }
 }

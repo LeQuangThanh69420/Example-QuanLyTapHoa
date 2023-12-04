@@ -25,8 +25,8 @@ namespace back.Controllers
                   && (input.Status == null || p.Status == input.Status)
                   && (input.DateInFrom == null || p.DateIn >= input.DateInFrom)
                   && (input.DateInTo == null || p.DateIn <= input.DateInTo)
-                  && (input.DateInFrom == null || p.DateIn >= input.DateOutFrom)
-                  && (input.DateInTo == null || p.DateIn <= input.DateOutTo)
+                  && (input.DateOutFrom == null || p.DateOut >= input.DateOutFrom)
+                  && (input.DateOutTo == null || p.DateOut <= input.DateOutTo)
                   && (input.CategoryId == null || p.CategoryId == input.CategoryId))
             .Select(p => new ProductOutputGetDto()
                 {
