@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace back.Entity
 {
-    public class Account
+    public class User
     {
-        public long AccountId { get; set; }
+        public long UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
