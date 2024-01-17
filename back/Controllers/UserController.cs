@@ -22,5 +22,15 @@ namespace back.Controllers
         {
             return await _context.User.AnyAsync(x => x.Username == Username.ToLower());
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> login(UserLoginInputDto input)
+        {
+            var account = await _context.User.SingleOrDefaultAsync(x => x.Username == input.Username);
+            if (account == null) return Unauthorized("tk cua anh ko ton tai, thu lai nhe!");
+            if (input.Password != account.Password) return Unauthorized("Sai mk r onii-chan!");
+            if (account.IsActive != true) return Unauthorized("tk cua onii-chan chua dc kick hoat, lien he admin duriu de kick hoat nhe!");
+            else return Ok(new { currentUser = account.Username});
+        }
     }
 }

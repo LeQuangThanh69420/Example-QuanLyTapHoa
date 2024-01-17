@@ -6,6 +6,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/signup">Signup</a>
                 </li>
+                <li class="nav-item" *ngIf="currentUser" style="color: white;">
+                    <a class="nav-link">dang nhap thanh cong</a>
+                </li>
             </ul>
 
             <div *ngIf="!currentUser">
@@ -17,7 +20,7 @@
             </div>
 
             <div *ngIf="currentUser" style="color: white;" class="d-flex">
-                <p class="me-2">welcome {{currentUser}}</p>
+                <p class="mt-2 mb-2 me-2">welcome {{currentUser}}</p>
                 <button class="btn btn-outline-danger" (click)="logOut()">Logout</button>
             </div>
         </div>

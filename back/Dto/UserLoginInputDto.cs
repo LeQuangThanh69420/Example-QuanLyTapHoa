@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace back.Dto
 {
-    public class LoginInputDto
+    public class UserLoginInputDto
     {
-        
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

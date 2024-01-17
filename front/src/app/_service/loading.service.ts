@@ -10,11 +10,12 @@ export class LoadingService {
   constructor(private spinnerService: NgxSpinnerService) { 
   }
 
-  busy(){
+  busy() {
     this.busyRequestCount++;
     this.spinnerService.show();
-    }
-  idle(){
+  }
+  
+  idle() {
     this.busyRequestCount--;
     if(this.busyRequestCount <= 0){
       this.busyRequestCount =0 ;
