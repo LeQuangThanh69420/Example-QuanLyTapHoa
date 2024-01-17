@@ -24,13 +24,13 @@ namespace back.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> login(UserLoginInputDto input)
+        public async Task<ActionResult<string>> login([FromBody] UserLoginInputDto input)
         {
-            var account = await _context.User.SingleOrDefaultAsync(x => x.Username == input.Username);
-            if (account == null) return Unauthorized("tk cua anh ko ton tai, thu lai nhe!");
-            if (input.Password != account.Password) return Unauthorized("Sai mk r onii-chan!");
-            if (account.IsActive != true) return Unauthorized("tk cua onii-chan chua dc kick hoat, lien he admin duriu de kick hoat nhe!");
-            else return Ok(new { currentUser = account.Username});
+            var user = await _context.User.SingleOrDefaultAsync(x => x.Username == input.Username);
+            if (user == null) return Unauthorized(new {message = "Account does not exist!"});
+            if (input.Password != user.Password) return Unauthorized(new {message = "Wrong Password!"});
+            if (user.IsActive != true) return Unauthorized(new {message = "Account is unactived!"});
+            else return Ok(new { currentUser = user.Username});
         }
     }
 }

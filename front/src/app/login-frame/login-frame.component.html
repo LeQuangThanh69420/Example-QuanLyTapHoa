@@ -13,8 +13,8 @@
 
             <div *ngIf="!currentUser">
                 <form class="d-flex" role="search" #loginForm="ngForm" (submit)="longIn()">
-                    <input class="form-control me-2" placeholder="TAIKHOAN" name="taikhoan" type="text" [(ngModel)]="account.username">
-                    <input class="form-control me-2" placeholder="MATKHAU" name="matkhau" type="password" [(ngModel)]="account.password">
+                    <input class="form-control me-2" placeholder="TAIKHOAN" name="taikhoan" type="text" [(ngModel)]="user.username">
+                    <input class="form-control me-2" placeholder="MATKHAU" name="matkhau" type="password" [(ngModel)]="user.password">
                     <button class="btn btn-outline-success" type="submit">SignIn</button>
                 </form>
             </div>

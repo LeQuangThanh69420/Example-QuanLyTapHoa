@@ -17,8 +17,8 @@ export class ControllerService {
     
   }
 
-  login(accountLoginInputDto: UserLoginInputDto) {
-    return this.http.post<any>(this.apiUrl + "User/login", accountLoginInputDto);
+  login(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
   }
 
 }
