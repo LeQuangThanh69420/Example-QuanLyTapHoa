@@ -1,4 +1,4 @@
-export class AccountLoginInputDto {
+export class UserLoginInputDto {
     username: any = "";
     password: any = "";
     constructor() {
