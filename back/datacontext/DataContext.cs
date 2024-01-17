@@ -12,8 +12,6 @@ namespace back.datacontext
         public DataContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Account> Account { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

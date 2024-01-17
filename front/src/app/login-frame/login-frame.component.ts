@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ControllerService } from '../_service/controller.service';
-import { AccountLoginInputDto } from '../_Dto/Account/AccountLoginInputDto';
+import { UserLoginInputDto } from '../_Dto/UserLoginInputDto';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginFrameComponent implements OnInit {
   constructor(private controllerService: ControllerService, private toastr: ToastrService, private router: Router) {
   }
 
-  account: AccountLoginInputDto = new AccountLoginInputDto();
+  account: UserLoginInputDto = new UserLoginInputDto();
   currentUser = "";
 
   ngOnInit() {
@@ -37,12 +37,11 @@ export class LoginFrameComponent implements OnInit {
       else {
         this.toastr.error(error.error);
       }
-      //alert(error.error);
     });
   }
 
   logOut() {
-    this.account = new AccountLoginInputDto();
+    this.account = new UserLoginInputDto();
     this.currentUser = "";
     localStorage.removeItem("currentUser");
     this.router.navigateByUrl("/");

@@ -12,9 +12,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from "ngx-toastr";
-import { CategoryComponent } from "./work/category/category.component";
-import { ProductComponent } from './work/category/product/product.component';
-import { WorkComponent } from './work/work.component';
 
 
 @NgModule({
@@ -23,9 +20,6 @@ import { WorkComponent } from './work/work.component';
     LoginFrameComponent,
     SignupFrameComponent,
     HomeComponent,
-    CategoryComponent,
-    ProductComponent,
-    WorkComponent,
   ],
   imports: [
     BrowserModule,
