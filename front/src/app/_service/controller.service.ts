@@ -13,12 +13,48 @@ export class ControllerService {
   }
 
   //User
-  register() {
-    
-  }
 
   login(userLoginInputDto: UserLoginInputDto) {
     return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
   }
 
+  //Category
+
+  GetCategory(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  CreateOrEditCategory(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  DeleteCategory(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  //Product
+
+  getProductUnitOfMeasure(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  getProductUnitOfCurrency(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  getProductStatus(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  SearchProduct(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  CreateOrEditProduct(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
+
+  DeleteProduct(userLoginInputDto: UserLoginInputDto) {
+    return this.http.post<any>(this.apiUrl + "User/login", userLoginInputDto);
+  }
 }

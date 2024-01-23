@@ -18,11 +18,6 @@ namespace back.Controllers
             _context = context;
         }
 
-        private async Task<bool> UserExists(string Username)
-        {
-            return await _context.User.AnyAsync(x => x.Username == Username.ToLower());
-        }
-
         [HttpPost("login")]
         public async Task<ActionResult<string>> login([FromBody] UserLoginInputDto input)
         {

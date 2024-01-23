@@ -35,11 +35,6 @@ export class LoginFrameComponent implements OnInit {
       window.localStorage.setItem("currentUser", this.currentUser);
     }, error => {
       this.toastr.error(error.error.message);
-      /*if(error.status == 400) {
-        error.error.errors.Username = error.error.errors.Username ?? "";
-        error.error.errors.Password = error.error.errors.Password ?? "";
-        this.toastr.error(error.error.errors.Username + " " + error.error.errors.Password);
-      }*/
     });
   }
 
