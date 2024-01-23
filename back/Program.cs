@@ -11,7 +11,7 @@ builder.Configuration.AddJsonFile("appsettings.json");//add mssql connection str
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
