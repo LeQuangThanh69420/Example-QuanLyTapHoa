@@ -1,0 +1,146 @@
+<div class="work-space">
+    <div class="category-bar">
+        <hr>
+        <h2 id="Category">Category</h2>
+        <hr>
+        <div class="category-item">
+            <div class="category-item-index">{{categoryIndex}}.</div>
+            <div class="category-item-name"><input type="text" id="categoryName" name="categoryName" [(ngModel)]="categoryCreateOrEditInputDto.categoryName"></div>
+            <div class="category-item-btn"><button class="btn-add" *ngIf="categoryCreateOrEditInputDto.categoryId" (click)="createOrEditCategory()">✓</button><button class="btn-add" *ngIf="!categoryCreateOrEditInputDto.categoryId" (click)="createOrEditCategory()">✚</button></div>
+            <div class="category-item-btn"><button class="btn-clear" style="filter: grayscale(0%) !important;" (click)="refreshCategory()" [disabled]="!(categoryCreateOrEditInputDto.categoryId || categoryCreateOrEditInputDto.categoryName)">↻</button></div>
+        </div>
+        <hr>
+        <div class="category-item" *ngFor="let category of categories; let i = index">
+            <div class="category-item-index">{{i + 1}}. </div>
+            <div class="category-item-name">{{category.categoryName}}</div>
+            <div class="category-item-btn"><button class="btn-edit" (click)="sendCategory(i + 1, category)">⌬</button></div>
+            <div class="category-item-btn"><button class="btn-delete" (click)="deleteCategory(category.categoryId)">⊘</button></div>
+        </div>
+        <hr>
+    </div>
+    <div class="product-content">
+        <hr>
+        <h2 id="Product">Product</h2>
+        <hr>
+        <div class="product-search">
+            <h4>Search</h4>
+            <div class="product-search-row">
+                <div class="product-search-item name">Product</div>
+                <div class="product-search-item ipt"><input type="text" name="productName" [(ngModel)]="productSearchInputDto.productName"></div>
+                <div class="product-search-item name">Category</div>
+                <div class="product-search-item ipt">
+                    <select name="categoryId" [(ngModel)]="productSearchInputDto.categoryId">
+                        <option *ngFor="let category of categories" [value]="category.categoryId">{{category.categoryName}}</option>
+                    </select>
+                </div>
+                <div class="product-search-item name"><button class="btn-search" (click)="searchProduct()"> Search</button></div>
+                <div class="product-search-item name"><button class="btn-clear" (click)="refreshProductSearch()">↻ Clear</button></div>
+            </div>
+            <div class="product-search-row">
+                <div class="product-search-item name">QuantityFrom</div>
+                <div class="product-search-item ipt"><input type="number" name="quantityFrom" [(ngModel)]="productSearchInputDto.quantityFrom"></div>
+                <div class="product-search-item name">QuantityTo</div>
+                <div class="product-search-item ipt"><input type="number" name="quantityTo" [(ngModel)]="productSearchInputDto.quantityTo"></div>
+                <div class="product-search-item name">UnitOfMeasure</div>
+                <div class="product-search-item ipt">
+                    <select name="unitOfMeasure" [(ngModel)]="productSearchInputDto.unitOfMeasure">
+                        <option *ngFor="let unitOfMeasure of ProductUnitOfMeasure" [value]="unitOfMeasure">{{unitOfMeasure}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-search-row">
+                <div class="product-search-item name">DateFrom</div>
+                <div class="product-search-item ipt"><input type="datetime-local" name="dateFrom" [(ngModel)]="productSearchInputDto.dateFrom"></div>
+                <div class="product-search-item name">DateTo</div>
+                <div class="product-search-item ipt"><input type="datetime-local" name="dateTo" [(ngModel)]="productSearchInputDto.dateTo"></div>
+                <div class="product-search-item name">Status</div>
+                <div class="product-search-item ipt">
+                    <select name="status" [(ngModel)]="productSearchInputDto.status">
+                        <option *ngFor="let status of ProductStatus" [value]="status">{{status}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="product-table">
+            <h4>Table</h4>
+            <table>
+                <tr>
+                    <th>Index</th>
+                    <th>ProductName</th>
+                    <th>Quantity</th>
+                    <th>UnitOfMeasure</th>
+                    <th>UnitPrice</th>
+                    <th>TotalPrice</th>
+                    <th>UnitOfCurrency</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>CategoryName</th>
+                </tr>
+                <tr *ngFor="let product of products; let i = index" (click)="sendProduct(product)">
+                    <td>{{i + 1}}</td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.unitOfMeasure}}</td>
+                    <td>{{product.unitPrice}}</td>
+                    <td>{{product.totalPrice}}</td>
+                    <td>{{product.unitOfCurrency}}</td>
+                    <td>{{product.status}}</td>
+                    <td>{{product.date}}</td>
+                    <td>{{product.categoryName}}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div class="product-action">
+            <h4 *ngIf="!productCreateOrEditInputDto.productId">Create</h4>
+            <h4 *ngIf="productCreateOrEditInputDto.productId">Edit</h4>
+            <div class="product-search-row">
+                <div class="product-search-item name">Product</div>
+                <div class="product-search-item ipt"><input type="text" name="productNameCOE" [(ngModel)]="productCreateOrEditInputDto.productName"></div>
+                <div class="product-search-item name">Category</div>
+                <div class="product-search-item ipt">
+                    <select name="categoryIdCOE" [(ngModel)]="productCreateOrEditInputDto.categoryId">
+                        <option *ngFor="let category of categories" [value]="category.categoryId">{{category.categoryName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-search-row">
+                <div class="product-search-item name">Quantity</div>
+                <div class="product-search-item ipt"><input type="number" name="quantityCOE" [(ngModel)]="productCreateOrEditInputDto.quantity"></div>
+                <div class="product-search-item name">UnitOfMeasure</div>
+                <div class="product-search-item ipt">
+                    <select name="unitOfMeasureCOE" [(ngModel)]="productCreateOrEditInputDto.unitOfMeasure">
+                        <option *ngFor="let unitOfMeasure of ProductUnitOfMeasure" [value]="unitOfMeasure">{{unitOfMeasure}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-search-row">
+                <div class="product-search-item name">UnitPrice</div>
+                <div class="product-search-item ipt"><input type="number" name="unitPriceCOE" [(ngModel)]="productCreateOrEditInputDto.unitPrice"></div>
+                <div class="product-search-item name">UnitOfCurrency</div>
+                <div class="product-search-item ipt">
+                    <select name="statusCOE" [(ngModel)]="productCreateOrEditInputDto.unitOfCurrency">
+                        <option *ngFor="let unitOfCurrency of ProductUnitOfCurrency" [value]="unitOfCurrency">{{unitOfCurrency}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-search-row">
+                <div class="product-search-item name">Date</div>
+                <div class="product-search-item ipt"><input type="datetime-local" name="dateCOE" [(ngModel)]="productCreateOrEditInputDto.date"></div>
+                <div class="product-search-item name">Status</div>
+                <div class="product-search-item ipt">
+                    <select name="statusCOE" [(ngModel)]="productCreateOrEditInputDto.status">
+                        <option *ngFor="let status of ProductStatus" [value]="status">{{status}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <button class="btn-add" [disabled]="productCreateOrEditInputDto.productId" (click)="createOrEditProduct()">✚ Add</button>
+            <button class="btn-edit" [disabled]="!productCreateOrEditInputDto.productId" (click)="createOrEditProduct()">⌬ Edit</button>
+            <button class="btn-delete" [disabled]="!productCreateOrEditInputDto.productId" (click)="deleteProduct()">⊘ Delete</button>
+            <button class="btn-clear" [disabled]="!productCreateOrEditInputDto.productId" (click)="refreshProduct()">↻ Clear</button>
+            <hr>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    list-style: none;
+}
+
+input {
+    border-radius: 5px;
+}
+
+table > tr:hover > td {
+    background-color: #ffc0cb80;
+}
+table > tr.selected > td {
+    background-color: #ffc0cbad;
+}
+
+.btn-search {
+    border: 2px solid #0000ff;
+    color: #0000ff;
+    border-radius: 5px;
+    background: none;
+}
+.btn-search:hover {
+    background: #0000ff19;
+}
+
+.btn-add {
+    border: 2px solid #0fff00;
+    color: #0fff00;
+    border-radius: 5px;
+    background: none;
+}
+.btn-add:hover {
+    background: #0fff0019;
+}
+
+.btn-edit {
+    border: 2px solid #ffaa00;
+    color: #ffaa00;
+    border-radius: 5px;
+    background: none;
+}
+.btn-edit:hover {
+    background: #ffaa0019;
+}
+
+.btn-clear {
+    border: 2px solid #0091ff;
+    color: #0091ff;
+    border-radius: 5px;
+    background: none;
+}
+.btn-clear:hover {
+    background: #0091ff19;
+}
+
+.btn-delete {
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    border-radius: 5px;
+    background: none;
+}
+.btn-delete:hover {
+    background: #ff000019;
+}
+
+button:disabled,
+button[disabled]{
+    filter: grayscale(75%);
+    background-color: #cccccc35;
+}
+
+.work-space {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 56px;
+    width: 100%;
+    height: 100%;
+}
+
+.category-bar {
+    background: rgb(33, 37, 41);
+    color: #ffffff;
+    width: 20%;
+    height: 100%;
+    overflow-y: scroll;
+    text-align: start;
+}
+
+#Category {
+    padding-right: 15px;
+    text-align: end;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.category-item-index {
+    width: 8%;
+    margin: 1%;
+}
+
+.category-item-name {
+    width: 64%;
+    margin: 1%;
+}
+
+#categoryName {
+    width: 98%;
+    margin: 1%;
+}
+
+.category-item-btn {
+    width: 10%;
+    margin: 1%;
+}
+
+.product-content {
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#Product, .product-search, .product-table, .product-action {
+    padding-left: 15px;
+}
+
+.product-search-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.product-search-item {
+    margin: 2px;
+}
+
+.product-search-item.name {
+    width: 110px;
+}
+
+.product-search-item.ipt {
+    width: 275px;
+}
