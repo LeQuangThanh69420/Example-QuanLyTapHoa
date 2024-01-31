@@ -23,7 +23,7 @@ namespace back.Controllers
         {
             try
             {
-                return await _context.Category.ToListAsync();
+                return await _context.Category.OrderBy(c => c.CategoryName).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -53,6 +53,7 @@ namespace back.Controllers
                     if (category != null)
                     {
                         category.CategoryName = input.CategoryName;
+                        await _context.SaveChangesAsync();
                         return Ok(new { message = "Edit Category successfully!" });
                     }
                     else return Ok(new { message = "Category not found!" });

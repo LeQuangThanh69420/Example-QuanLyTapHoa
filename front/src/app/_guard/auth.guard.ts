@@ -6,7 +6,7 @@
 // };
 
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
@@ -15,10 +15,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(){}
+  constructor(private toastr: ToastrService, private router: Router) {}
   
   canActivate() { 
-    return false;
+    const user = window.localStorage.getItem('user');
+    if (!user) {
+      // Nếu user không tồn tại, chuyển hướng về trang 'home'
+      this.router.navigate(['/home']);
+      this.toastr.error("Login require!");
+      return false;
+    }
+    // Nếu user tồn tại, cho phép truy cập vào route 'workspace'
+    return true;
   }
   
 }

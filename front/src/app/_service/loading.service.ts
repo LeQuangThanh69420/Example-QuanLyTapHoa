@@ -18,7 +18,7 @@ export class LoadingService {
   idle() {
     this.busyRequestCount--;
     if(this.busyRequestCount <= 0){
-      this.busyRequestCount =0 ;
+      this.busyRequestCount = 0 ;
       this.spinnerService.hide();
     }
   }

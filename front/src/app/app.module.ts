@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from "ngx-toastr";
+import { WorkspaceComponent } from './workspace/workspace.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ToastrModule } from "ngx-toastr";
     AppComponent,
     LoginFrameComponent,
     HomeComponent,
+    WorkspaceComponent,
   ],
   imports: [
     BrowserModule,

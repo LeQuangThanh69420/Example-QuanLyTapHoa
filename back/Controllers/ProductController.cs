@@ -7,11 +7,13 @@ using back.Dto;
 using back.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace back.Controllers
 {
     public class ProductController : BaseApiController
     {
+
         private readonly DataContext _context;
         public ProductController(DataContext context)
         {
@@ -37,41 +39,37 @@ namespace back.Controllers
         }
 
         [HttpGet("SearchProduct")]
-        public async Task<ActionResult<List<ProductSearchOutputDto>>> SearchProduct(ProductSearchInputDto input)
+        public async Task<ActionResult<List<ProductSearchOutputDto>>> SearchProduct([FromQuery] ProductSearchInputDto input)
         {
             try
             {
-                return await _context.Product
-                .Where(p =>
-                    (string.IsNullOrWhiteSpace(input.ProductName) || p.ProductName.Contains(input.ProductName))
-                    && (input.QuantityFrom == 0 || input.QuantityFrom == null || p.Quantity >= input.QuantityFrom)
-                    && (input.QuantityTo == 0 || input.QuantityTo == null || p.Quantity <= input.QuantityTo)
-                    && (string.IsNullOrWhiteSpace(input.UnitOfMeasure) || p.UnitOfMeasure == input.UnitOfMeasure)
-                    && (string.IsNullOrWhiteSpace(input.Status) || p.Status == input.Status)
-                    && (input.DateFrom == null || p.Date >= input.DateFrom)
-                    && (input.DateTo == null || p.Date >= input.DateTo)
-                    && (input.CategoryId == 0 || input.CategoryId == null || p.CategoryId == input.CategoryId)
-                )
-                .Join(
-                    _context.Category,
-                    product => product.CategoryId,
-                    category => category.CategoryId,
-                    (product, category) => new ProductSearchOutputDto
+                var product = from Product in _context.Product
+                            join Category in _context.Category on Product.CategoryId equals Category.CategoryId
+                where
+                    (string.IsNullOrWhiteSpace(input.ProductName) || Product.ProductName.Contains(input.ProductName))
+                    && (input.QuantityFrom == 0 || input.QuantityFrom == null || Product.Quantity >= input.QuantityFrom)
+                    && (input.QuantityTo == 0 || input.QuantityTo == null || Product.Quantity <= input.QuantityTo)
+                    && (string.IsNullOrWhiteSpace(input.UnitOfMeasure) || Product.UnitOfMeasure == input.UnitOfMeasure)
+                    && (string.IsNullOrWhiteSpace(input.Status) || Product.Status == input.Status)
+                    && (input.DateFrom == null || Product.Date >= input.DateFrom)
+                    && (input.DateTo == null || Product.Date >= input.DateTo)
+                    && (input.CategoryId == 0 || input.CategoryId == null || Product.CategoryId == input.CategoryId)
+                select new ProductSearchOutputDto
                     {
-                        ProductId = product.ProductId,
-                        ProductName = product.ProductName,
-                        Quantity = product.Quantity,
-                        UnitOfMeasure = product.UnitOfMeasure,
-                        UnitPrice = product.UnitPrice,
-                        TotalPrice = product.Quantity * product.UnitPrice,
-                        UnitOfCurrency = product.UnitOfCurrency,
-                        Status = product.Status,
-                        Date = product.Date,
-                        CategoryId = product.CategoryId,
-                        CategoryName = category.CategoryName, // Lấy CategoryName từ bảng Category
-                    }
-                )
-                .ToListAsync();
+                        ProductId = Product.ProductId,
+                        ProductName = Product.ProductName,
+                        Quantity = Product.Quantity,
+                        UnitOfMeasure = Product.UnitOfMeasure,
+                        UnitPrice = Product.UnitPrice,
+                        TotalPrice = Product.Quantity * Product.UnitPrice,
+                        UnitOfCurrency = Product.UnitOfCurrency,
+                        Status = Product.Status,
+                        Date = Product.Date,
+                        CategoryId = Product.CategoryId,
+                        CategoryName = Category.CategoryName
+                    };
+                
+                return await product.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -115,6 +113,7 @@ namespace back.Controllers
                         product.Status = input.Status;
                         product.Date = input.Date;
                         product.CategoryId = input.CategoryId;
+                        await _context.SaveChangesAsync();
                         return Ok(new { message = "Edit Product successfully!" });
                     }
                     else return Ok(new { message = "Product not found!" });
@@ -139,5 +138,6 @@ namespace back.Controllers
                 return Ok(new { message = "Delete Product successfully!" });
             }
         }
+
     }
 }

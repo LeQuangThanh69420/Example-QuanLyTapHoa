@@ -13,7 +13,7 @@ namespace back.Dto
         public string UnitOfMeasure { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
-        public int UnitOfCurrency { get; set; }
+        public string UnitOfCurrency { get; set; }
         public string Status { get; set; }
         public DateTime Date { get; set; }
         public long CategoryId { get; set; }
