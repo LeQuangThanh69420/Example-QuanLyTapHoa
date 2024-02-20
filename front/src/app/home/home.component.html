@@ -1,4 +1,14 @@
-<p>Chao Mung</p>
+<hr>
+<h1>Thống kê</h1>
+<hr>
+Năm
+<input type="number" name="year" min="1000" max="9999" [(ngModel)]="year" (change)="createURL()">
+Đơn vị tiền tệ
+<select name="unitOfCurrency" (change)="createURL()" [(ngModel)]="unitOfCurrency">
+    <option *ngFor="let unitOfCurrency of ProductUnitOfCurrency" [value]="unitOfCurrency">{{unitOfCurrency}}</option>
+</select>
+<br>
+<iframe [src]="safeURL" frameborder="1" width="100%" height="500"></iframe>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
@@ -12,4 +22,5 @@
         <li class="ms-3"><a href="https://www.facebook.com/duriustudio">FaceBook</a></li>
     </ul>
 </footer>
-<canvas id="live2d" width="560" height="600" class="live2d" style="position: absolute; bottom: 0px; right: 100px; width: 25%;"></canvas>
+
+<!-- <canvas id="live2d" width="560" height="600" class="live2d" style="position: absolute; bottom: 0px; right: 100px; width: 25%;"></canvas> -->

@@ -44,31 +44,31 @@ namespace back.Controllers
             try
             {
                 var product = from Product in _context.Product
-                            join Category in _context.Category on Product.CategoryId equals Category.CategoryId
-                where
-                    (string.IsNullOrWhiteSpace(input.ProductName) || Product.ProductName.Contains(input.ProductName))
-                    && (input.QuantityFrom == 0 || input.QuantityFrom == null || Product.Quantity >= input.QuantityFrom)
-                    && (input.QuantityTo == 0 || input.QuantityTo == null || Product.Quantity <= input.QuantityTo)
-                    && (string.IsNullOrWhiteSpace(input.UnitOfMeasure) || Product.UnitOfMeasure == input.UnitOfMeasure)
-                    && (string.IsNullOrWhiteSpace(input.Status) || Product.Status == input.Status)
-                    && (input.DateFrom == null || Product.Date >= input.DateFrom)
-                    && (input.DateTo == null || Product.Date >= input.DateTo)
-                    && (input.CategoryId == 0 || input.CategoryId == null || Product.CategoryId == input.CategoryId)
-                select new ProductSearchOutputDto
-                    {
-                        ProductId = Product.ProductId,
-                        ProductName = Product.ProductName,
-                        Quantity = Product.Quantity,
-                        UnitOfMeasure = Product.UnitOfMeasure,
-                        UnitPrice = Product.UnitPrice,
-                        TotalPrice = Product.Quantity * Product.UnitPrice,
-                        UnitOfCurrency = Product.UnitOfCurrency,
-                        Status = Product.Status,
-                        Date = Product.Date,
-                        CategoryId = Product.CategoryId,
-                        CategoryName = Category.CategoryName
-                    };
-                
+                              join Category in _context.Category on Product.CategoryId equals Category.CategoryId
+                              where
+                                  (string.IsNullOrWhiteSpace(input.ProductName) || Product.ProductName.Contains(input.ProductName))
+                                  && (input.QuantityFrom == 0 || input.QuantityFrom == null || Product.Quantity >= input.QuantityFrom)
+                                  && (input.QuantityTo == 0 || input.QuantityTo == null || Product.Quantity <= input.QuantityTo)
+                                  && (string.IsNullOrWhiteSpace(input.UnitOfMeasure) || Product.UnitOfMeasure == input.UnitOfMeasure)
+                                  && (string.IsNullOrWhiteSpace(input.Status) || Product.Status == input.Status)
+                                  && (input.DateFrom == null || Product.Date >= input.DateFrom)
+                                  && (input.DateTo == null || Product.Date >= input.DateTo)
+                                  && (input.CategoryId == 0 || input.CategoryId == null || Product.CategoryId == input.CategoryId)
+                              select new ProductSearchOutputDto
+                              {
+                                  ProductId = Product.ProductId,
+                                  ProductName = Product.ProductName,
+                                  Quantity = Product.Quantity,
+                                  UnitOfMeasure = Product.UnitOfMeasure,
+                                  UnitPrice = Product.UnitPrice,
+                                  TotalPrice = Product.Quantity * Product.UnitPrice,
+                                  UnitOfCurrency = Product.UnitOfCurrency,
+                                  Status = Product.Status,
+                                  Date = Product.Date,
+                                  CategoryId = Product.CategoryId,
+                                  CategoryName = Category.CategoryName
+                              };
+
                 return await product.ToListAsync();
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace back.Controllers
         {
             try
             {
-                if(input.ProductId == 0 || input.ProductId == null)
+                if (input.ProductId == 0 || input.ProductId == null)
                 {
                     var newProduct = new Product
                     {
@@ -102,7 +102,7 @@ namespace back.Controllers
                 }
                 else
                 {
-                    var product = await _context.Product.SingleOrDefaultAsync(P => P.ProductId == input.ProductId); 
+                    var product = await _context.Product.SingleOrDefaultAsync(P => P.ProductId == input.ProductId);
                     if (product != null)
                     {
                         product.ProductName = input.ProductName;

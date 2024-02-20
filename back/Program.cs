@@ -1,3 +1,5 @@
+using back._iservice;
+using back._service;
 using back.Controllers;
 using back.datacontext;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddCors();
+builder.Services.AddScoped<IChartService, ChartService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
