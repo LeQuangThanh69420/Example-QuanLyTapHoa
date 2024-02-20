@@ -24,7 +24,7 @@ export class LoginFrameComponent implements OnInit {
   logIn() {
     this.controllerService.login(this.username, this.password).subscribe(
       respone => {
-        this.toastr.success("Welcome" + respone.currentUser);
+        this.toastr.success("Welcome " + respone.currentUser);
         window.localStorage.setItem("user", respone.currentUser);
         this.currentUser = window.localStorage.getItem("user");
         this.router.navigateByUrl("/workspace");
