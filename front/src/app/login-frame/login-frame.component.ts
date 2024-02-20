@@ -13,7 +13,6 @@ export class LoginFrameComponent implements OnInit {
   constructor(private controllerService: ControllerService, private toastr: ToastrService, private router: Router) {
   }
 
-
   currentUser: string | null;
   ngOnInit() {
     this.currentUser = window.localStorage.getItem("user");

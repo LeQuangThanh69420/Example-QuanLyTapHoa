@@ -7,67 +7,72 @@ input {
     border-radius: 5px;
 }
 
-table > tr:hover > td {
-    background-color: #ffc0cb80;
+select {
+    border-radius: 5px;
+    border: 2px solid black;
 }
-table > tr.selected > td {
-    background-color: #ffc0cbad;
+
+.select-able:hover {
+    background-color: var(--selectAble);
+}
+.selected {
+    background-color: var(--selected);
 }
 
 .btn-search {
-    border: 2px solid #0000ff;
-    color: #0000ff;
+    border: 2px solid var(--searchColor);
+    color: var(--searchColor);
     border-radius: 5px;
     background: none;
 }
 .btn-search:hover {
-    background: #0000ff19;
+    background: var(--searchColorHover);
 }
 
 .btn-add {
-    border: 2px solid #0fff00;
-    color: #0fff00;
+    border: 2px solid var(--addColor);
+    color: var(--addColor);
     border-radius: 5px;
     background: none;
 }
 .btn-add:hover {
-    background: #0fff0019;
+    background: var(--addColorHover);
 }
 
 .btn-edit {
-    border: 2px solid #ffaa00;
-    color: #ffaa00;
+    border: 2px solid var(--editColor);
+    color: var(--editColor);
     border-radius: 5px;
     background: none;
 }
 .btn-edit:hover {
-    background: #ffaa0019;
+    background: var(--editColorHover);
 }
 
 .btn-clear {
-    border: 2px solid #0091ff;
-    color: #0091ff;
+    border: 2px solid var(--clearColor);
+    color: var(--clearColor);
     border-radius: 5px;
     background: none;
 }
 .btn-clear:hover {
-    background: #0091ff19;
+    background: var(--clearColorHover);
 }
 
 .btn-delete {
-    border: 2px solid #ff0000;
-    color: #ff0000;
+    border: 2px solid var(--deleteColor);
+    color: var(--deleteColor);
     border-radius: 5px;
     background: none;
 }
 .btn-delete:hover {
-    background: #ff000019;
+    background: var(--deleteColorHover);
 }
 
 button:disabled,
 button[disabled]{
     filter: grayscale(75%);
-    background-color: #cccccc35;
+    background-color: #cccccc1f;
 }
 
 .work-space {
@@ -149,4 +154,10 @@ button[disabled]{
 
 .product-search-item.ipt {
     width: 275px;
+    display: flex;
+}
+
+.product-search-item.ipt * {
+    width: 235px;
+    align-self: start;
 }

@@ -5,18 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class TableService {
 
-  constructor() { }
+  constructor() { 
+  }
   
-  selectTableRow(rows: HTMLCollectionOf<Element> , i: number) {
-    for (let j = 0; j < rows.length; j++) {
-      rows[j].classList.remove("selected");
+  selectItem(items: HTMLCollectionOf<Element> , i: number) {
+    for (let j = 0; j < items.length; j++) {
+      items[j].classList.remove("selected");
     }
-    rows[i].classList.add("selected");
+    items[i].classList.add("selected");
   }
 
-  clearTableChoice(rows: HTMLCollectionOf<Element>) {
-    for (let j = 0; j < rows.length; j++) {
-      rows[j].classList.remove("selected");
+  clearItem(items: HTMLCollectionOf<Element>) {
+    for (let j = 0; j < items.length; j++) {
+      items[j].classList.remove("selected");
     }
   }
 

@@ -3,11 +3,17 @@ table, th, td {
     border: 1px solid black;
 }
 
-tr.selectable:hover > td{
-    background-color: rgba(255, 192, 203, 0.21);
+:root {
+    --searchColor: #0000ff;
+    --searchColorHover: #0000ff19;
+    --addColor: #0fff00;
+    --addColorHover: #0fff0019;
+    --editColor: #ffaa00;
+    --editColorHover: #ffaa0019;
+    --clearColor: #0091ff;
+    --clearColorHover: #0091ff19;
+    --deleteColor: #ff0000;
+    --deleteColorHover: #ff000019;
+    --selectAble: #80808088;
+    --selected: #808080b2;
 }
-
-tr.selected {
-    background-color: pink;
-}
-

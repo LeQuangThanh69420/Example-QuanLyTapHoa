@@ -6,6 +6,7 @@ import { CategoryCreateOrEditInputDto } from '../_Dto/CategoryCreateOrEditInputD
 import { ProductSearchInputDto } from '../_Dto/ProductSearchInputDto';
 import { TableService } from '../_service/table.service';
 import { ProductCreateOrEditInputDto } from '../_Dto/ProductCreateOrEditInputDto';
+import { PaginationService } from '../_service/pagination.service';
 
 @Component({
   selector: 'app-workspace',
@@ -14,20 +15,29 @@ import { ProductCreateOrEditInputDto } from '../_Dto/ProductCreateOrEditInputDto
 })
 export class WorkspaceComponent implements OnInit {
 
-  constructor(private controllerService: ControllerService, private tableService: TableService, private toastr: ToastrService, private router: Router) {
+  constructor(private controllerService: ControllerService, private tableService: TableService, private paginationService: PaginationService, private toastr: ToastrService, private router: Router) {
 
   }
 
   ngOnInit(): void {
+    this.categoriesItem = document.getElementsByClassName("category-item");
+    this.productsItem = document.getElementsByClassName("product-item");
     this.refreshCategory();
     this.getCategory();
     this.getProductUnitOfMeasure();
     this.getProductUnitOfCurrency();
     this.getProductStatus();
+    this.refreshProduct();
     this.refreshProductSearch();
     this.searchProduct();
-    this.refreshProduct();
   }
+
+  categoriesItem: HTMLCollectionOf<Element>;
+  productsItem: HTMLCollectionOf<Element>;
+
+  page: number = 1;
+  pageSize: number = 10;
+  maxPage: number;
 
   categories: any[];
   categoryIndex: number = 0;
@@ -48,6 +58,7 @@ export class WorkspaceComponent implements OnInit {
     this.categoryIndex = i;
     this.categoryCreateOrEditInputDto.categoryId = category.categoryId;
     this.categoryCreateOrEditInputDto.categoryName = category.categoryName;
+    this.tableService.selectItem(this.categoriesItem, i)
   }
 
   createOrEditCategory() {
@@ -83,6 +94,7 @@ export class WorkspaceComponent implements OnInit {
   refreshCategory() {
     this.categoryIndex = 0;
     this.categoryCreateOrEditInputDto = new CategoryCreateOrEditInputDto();
+    this.tableService.clearItem(this.categoriesItem)
   }
 
   ProductUnitOfMeasure: string[];
@@ -128,7 +140,8 @@ export class WorkspaceComponent implements OnInit {
   searchProduct() {
     this.controllerService.SearchProduct(this.productSearchInputDto).subscribe(
       respone => {
-        this.products = respone;
+        this.maxPage = Math.ceil(respone.length / this.pageSize);
+        this.products = this.paginationService.pagination(respone, this.page, this.pageSize);
       },
       error => {
         this.toastr.error(error.error.message);
@@ -141,7 +154,7 @@ export class WorkspaceComponent implements OnInit {
     this.searchProduct();
   }
 
-  sendProduct(product: any) {
+  sendProduct(i: number, product: any) {
     this.productCreateOrEditInputDto.productId = product.productId;
     this.productCreateOrEditInputDto.productName = product.productName;
     this.productCreateOrEditInputDto.quantity = product.quantity;
@@ -151,6 +164,7 @@ export class WorkspaceComponent implements OnInit {
     this.productCreateOrEditInputDto.status = product.status;
     this.productCreateOrEditInputDto.date = product.date;
     this.productCreateOrEditInputDto.categoryId = product.categoryId;
+    this.tableService.selectItem(this.productsItem, i);
   }
 
   createOrEditProduct() {
@@ -185,6 +199,7 @@ export class WorkspaceComponent implements OnInit {
 
   refreshProduct() {
     this.productCreateOrEditInputDto = new ProductCreateOrEditInputDto();
+    this.tableService.clearItem(this.productsItem)
   }
 
 }
