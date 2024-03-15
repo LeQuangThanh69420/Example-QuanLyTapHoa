@@ -1,6 +1,5 @@
 # task
-## Database : SQL server(mssql)
-> deo bit ns j, sql de vl
+## Database : SQLite
 ## Backend : .NET 7.0
 * Extensions for Visual Studio Code:
   - [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
@@ -16,11 +15,7 @@
   dotnet watch run
   ```
 * Framework used:
-  - Swashbuckle.AspNetCore
   - Microsoft.EntityFrameworkCore
-  - Microsoft.EntityFrameworkCore.Design
-  - Microsoft.EntityFrameworkCore.SqlServer
-  - CloudinaryDotNet
 ## Frontend: Nodejs
 * Extensions for Visual Studio Code:
   - [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
@@ -35,13 +30,10 @@
   ng serve //hosting angular app
   ng g m <moduleName> | ng generate module <moduleName> //generate module and declare to the module you are standing
   ng g c <componentName> | ng generate component <componentName>//generate component and declare to the module you are standing
-  ng g m <moduleName> --skip-tests
-  ng g c <componentName> --skip-tests
-  ng g s <serviceName> | ng generate service <serviceName> --skip-tests
+  ng g s <serviceName> | ng generate service <serviceName>
   ```
 * Framework used:
   - bootstrap
   - @angular/cli
   - ngx-spinner
   - ngx-toastr
-  - ng2-file-upload
